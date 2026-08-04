@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HDR UI for Web examples</title>
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">HDR UI for Web</p>
+        <h1>Brighter-than-white UI, with one class.</h1>
+        <p class="intro">The page remains ordinary SDR unless the current browser and display match <code>dynamic-range: high</code>.</p>
+        <div class="status" id="status">Checking display…</div>
+      </header>
+
+      <section>
+        <div class="sectionHeading">
+          <h2>UI surfaces</h2>
+          <p>Each component owns its strength and state logic.</p>
+        </div>
+
+        <div class="examples">
+          <button class="hdr-ui button buttonPrimary">Continue</button>
+          <button class="hdr-ui button buttonColor">New research</button>
+          <div class="hdr-ui card">
+            <span class="cardLabel">Textured surface</span>
+            <strong>HDR preserves the underlying gradient.</strong>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sectionHeading">
+          <h2>State is yours</h2>
+          <p>This demo changes the same variable on hover and selection.</p>
+        </div>
+
+        <nav class="tabs" aria-label="Example navigation">
+          <a class="hdr-ui tab" href="#screens">Screens</a>
+          <a class="hdr-ui tab" aria-current="page" href="#flows">Flows</a>
+          <a class="hdr-ui tab" href="#apps">Apps</a>
+        </nav>
+      </section>
+
+      <section>
+        <div class="sectionHeading">
+          <h2>Tune intensity</h2>
+          <p>The control changes <code>--hdr-ui-strength</code> directly.</p>
+        </div>
+
+        <div class="playground">
+          <div class="hdr-ui preview" id="preview">Preview surface</div>
+          <label class="strengthControl">
+            Strength
+            <input id="strength" type="range" min="0" max="50" value="10" step="1">
+            <output for="strength">10%</output>
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <script src="./demo.js"></script>
+  </body>
+</html>

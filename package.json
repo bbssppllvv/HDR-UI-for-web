@@ -1,0 +1,40 @@
+{
+  "name": "hdr-ui-for-web",
+  "version": "0.1.0",
+  "description": "A tiny CSS primitive for brighter-than-white HDR highlights on UI and DOM elements.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbssppllvv/HDR-UI-for-web.git"
+  },
+  "homepage": "https://github.com/bbssppllvv/HDR-UI-for-web#readme",
+  "bugs": {
+    "url": "https://github.com/bbssppllvv/HDR-UI-for-web/issues"
+  },
+  "style": "./index.css",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./index.css",
+    "./styles.css": "./index.css",
+    "./index.css": "./index.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node tests/validate.mjs",
+    "pack:check": "npm pack --dry-run"
+  },
+  "keywords": [
+    "hdr",
+    "css",
+    "ui",
+    "avif",
+    "display"
+  ]
+}

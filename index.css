@@ -1,0 +1,26 @@
+:where(.hdr-ui) {
+  position: relative;
+}
+
+@media (dynamic-range: high) {
+  :where(.hdr-ui)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAD5bWV0YQAAAAAAAAAvaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAFBpY3R1cmVIYW5kbGVyAAAAAA5waXRtAAAAAAABAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAASEAAAAeAAAAKGlpbmYAAAAAAAEAAAAaaW5mZQIAAAAAAQAAYXYwMUNvbG9yAAAAAGppcHJwAAAAS2lwY28AAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMKCgoAAAAMYXYxQ4EATAAAAAATY29scm5jbHgACQAQAAkAAAAAF2lwbWEAAAAAAAAAAQABBAECgwQAAAAmbWRhdAoMAAAAAAB//OhIgEggMg4QALwAAAJAAAIDVJX4QA==");
+    background-repeat: repeat;
+    background-size: auto;
+    mix-blend-mode: multiply;
+    dynamic-range-limit: no-limit;
+    opacity: var(--hdr-ui-strength, 10%);
+    pointer-events: none;
+    transition: opacity var(--hdr-ui-duration, 180ms) ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.hdr-ui)::after {
+    transition: none;
+  }
+}
