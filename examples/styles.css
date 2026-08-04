@@ -385,12 +385,12 @@ input[type="range"]::-moz-range-thumb {
   justify-content: space-between;
   margin: 0 24px;
   padding: 0 26px;
-  border: 1px solid #bfc0ba;
+  border: 0;
   border-radius: 999px;
-  background: #fff;
-  color: var(--ink);
-  font-size: 18px;
-  font-weight: 500;
+  background: linear-gradient(110deg, #c93a08, #a92a00);
+  color: #fff;
+  font-size: 19px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -401,7 +401,6 @@ input[type="range"]::-moz-range-thumb {
 .colorButton:hover,
 .colorButton:focus-visible {
   --hdr-ui-strength: var(--demo-action-hover-strength);
-  border-color: #8c8e87;
 }
 
 .uiIcon {
@@ -455,7 +454,7 @@ input[type="range"]::-moz-range-thumb {
   min-height: 48px;
   padding: 0 24px;
   border-radius: 999px;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .segmentItemActive {
@@ -465,12 +464,13 @@ input[type="range"]::-moz-range-thumb {
 
 .segmentItem:not(.segmentItemActive) {
   --hdr-ui-strength: 0%;
+  color: var(--muted);
 }
 
 .segmentItem:not(.segmentItemActive):hover,
 .segmentItem:not(.segmentItemActive):focus-visible {
   --hdr-ui-strength: var(--demo-strength);
-  background: #e8e8e3;
+  color: var(--ink);
 }
 
 .iconButton {
