@@ -468,7 +468,7 @@ input[type="range"]::-moz-range-thumb {
   position: relative;
   min-height: 480px;
   overflow: hidden;
-  background: #18251f;
+  background: #ab8ff2;
 }
 
 .sampleMetaLight {
@@ -486,10 +486,7 @@ input[type="range"]::-moz-range-thumb {
   flex-direction: column;
   justify-content: space-between;
   padding: 28px;
-  background:
-    radial-gradient(circle at 72% 22%, rgb(255 220 93 / .9), transparent 28%),
-    repeating-linear-gradient(116deg, rgb(255 255 255 / .06) 0 1px, transparent 1px 7px),
-    linear-gradient(145deg, #295b48, #111b17 72%);
+  background: linear-gradient(135deg, #ab8ff2, #7a60b9 38%, #5c448d 68%, #493374);
   color: #fff;
 }
 
@@ -697,15 +694,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .materialColor {
-  background:
-    radial-gradient(circle at 28% 24%, rgb(255 255 255 / .7), transparent 24%),
-    linear-gradient(145deg, #ff5b2c, #ffbd36 58%, #e8ef86);
+  background: linear-gradient(135deg, #f4824d 25%, #f42919 75%);
 }
 
-.materialMetal {
-  background:
-    radial-gradient(circle at 72% 16%, #fff, transparent 22%),
-    linear-gradient(125deg, #8e938f, #f7f8f5 38%, #a8adaa 66%, #e8ebe8);
+.materialNeutral {
+  background: linear-gradient(135deg, #c5c7c2, #f4f4f0);
 }
 
 .codeSection {
