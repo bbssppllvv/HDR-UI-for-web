@@ -73,28 +73,45 @@
         <div class="sampleGrid">
           <article class="sampleBlock sampleBlockAction">
             <div class="sampleMeta">
-              <span>Action</span>
-              <code>button</code>
+              <span>Buttons</span>
+              <code>primary · secondary · icon</code>
             </div>
-            <button class="hdr-ui animatedHdr colorButton">
-              Generate preview
-              <span aria-hidden="true">↗</span>
-            </button>
+            <div class="componentStage buttonStage">
+              <div class="buttonGroup" aria-label="Button variants">
+                <button class="hdr-ui animatedHdr uiButton uiButtonPrimary">Create project</button>
+                <button class="hdr-ui animatedHdr uiButton uiButtonSecondary">Save draft</button>
+                <button class="hdr-ui animatedHdr uiButton uiButtonIcon" aria-label="More options">
+                  <svg viewBox="0 0 20 20" aria-hidden="true">
+                    <circle cx="4" cy="10" r="1.5"></circle>
+                    <circle cx="10" cy="10" r="1.5"></circle>
+                    <circle cx="16" cy="10" r="1.5"></circle>
+                  </svg>
+                </button>
+              </div>
+              <p class="componentHint">Familiar variants, with brightness added as a state.</p>
+            </div>
           </article>
 
           <article class="sampleBlock sampleBlockControls">
             <div class="sampleMeta">
-              <span>Controls</span>
-              <code>nav + icon button</code>
+              <span>Tabs &amp; search</span>
+              <code>active state · nested action</code>
             </div>
-            <div class="controlRow">
-              <nav class="segment" aria-label="Example view selector">
-                <button class="hdr-ui animatedHdr segmentItem segmentItemActive" aria-pressed="true">Canvas</button>
-                <button class="hdr-ui animatedHdr segmentItem" aria-pressed="false">Code</button>
-              </nav>
-              <button class="hdr-ui animatedHdr iconButton" aria-label="Increase exposure">
-                <span aria-hidden="true">＋</span>
-              </button>
+            <div class="componentStage controlsStage">
+              <div class="tabs" role="tablist" aria-label="Content view">
+                <button class="hdr-ui animatedHdr tabItem tabItemActive" role="tab" aria-selected="true">Overview</button>
+                <button class="hdr-ui animatedHdr tabItem" role="tab" aria-selected="false">Activity</button>
+                <button class="hdr-ui animatedHdr tabItem" role="tab" aria-selected="false">Settings</button>
+              </div>
+              <label class="hdr-ui animatedHdr searchField">
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <circle cx="9" cy="9" r="5.5"></circle>
+                  <path d="m13 13 4 4"></path>
+                </svg>
+                <span class="srOnly">Search items</span>
+                <input type="search" placeholder="Search items…">
+                <kbd>⌘ K</kbd>
+              </label>
             </div>
           </article>
 
@@ -111,34 +128,43 @@
 
           <article class="sampleBlock sampleBlockSystem">
             <div class="sampleMeta">
-              <span>System UI</span>
-              <code>status surface</code>
+              <span>Notification</span>
+              <code>toast · nested actions</code>
             </div>
-            <div class="hdr-ui animatedHdr statusSurface" tabindex="0">
-              <span class="statusDot" aria-hidden="true"></span>
-              <div>
-                <strong>Render complete</strong>
-                <span>32 frames · 4.8 seconds</span>
+            <div class="componentStage toastStage">
+              <div class="hdr-ui animatedHdr toast" role="status">
+                <span class="toastIcon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="m5.5 10.5 3 3 6-7"></path></svg>
+                </span>
+                <div class="toastCopy">
+                  <strong>Changes published</strong>
+                  <span>Your latest updates are now live.</span>
+                </div>
+                <button class="hdr-ui animatedHdr toastAction">Undo</button>
+                <button class="hdr-ui animatedHdr toastClose" aria-label="Dismiss notification">×</button>
               </div>
-              <span class="statusArrow" aria-hidden="true">→</span>
             </div>
           </article>
 
           <article class="sampleBlock sampleBlockComposer">
             <div class="sampleMeta">
               <span>Composer</span>
-              <code>input surface + nested controls</code>
+              <code>3 independent HDR layers</code>
             </div>
             <div class="composerStage">
-              <div class="hdr-ui animatedHdr composer">
-                <button class="composerUtility" aria-label="Add attachment">
-                  <span aria-hidden="true">＋</span>
+              <form class="hdr-ui animatedHdr composer">
+                <button class="hdr-ui animatedHdr composerUtility" type="button" aria-label="Add attachment">
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 10.5 11 6a3 3 0 0 1 4.2 4.2l-6 6a4.5 4.5 0 0 1-6.4-6.4l6-6"></path></svg>
                 </button>
-                <span class="composerPlaceholder">Write something…</span>
-                <button class="composerSend" aria-label="Send message">
-                  <span aria-hidden="true">↑</span>
+                <label class="composerInput">
+                  <span class="srOnly">Message</span>
+                  <input type="text" placeholder="Ask anything…">
+                </label>
+                <button class="hdr-ui animatedHdr composerSend" aria-label="Send message">
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15V5M6 9l4-4 4 4"></path></svg>
                 </button>
-              </div>
+              </form>
+              <p class="layerLegend"><span>Surface · subtle</span><span>Utility · medium</span><span>Action · strong</span></p>
             </div>
           </article>
 
