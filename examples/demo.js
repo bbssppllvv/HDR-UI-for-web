@@ -6,7 +6,7 @@ const toggleLabel = document.querySelector('#toggleLabel');
 const strength = document.querySelector('#strength');
 const strengthValue = document.querySelector('#strengthValue');
 const comparisonValue = document.querySelector('#comparisonValue');
-const tabs = document.querySelectorAll('[role="tab"]');
+const modeButtons = document.querySelectorAll('.segmentItem');
 const composer = document.querySelector('.composer');
 
 function updateStatus() {
@@ -20,13 +20,10 @@ function updateStrength() {
   const formattedValue = `${value}%`;
 
   root.style.setProperty('--demo-strength', formattedValue);
-  root.style.setProperty('--demo-rest-strength', `${Math.round(value / 3)}%`);
-  root.style.setProperty('--hdr-surface-rest', `${Math.round(value * 0.16)}%`);
-  root.style.setProperty('--hdr-surface-focus', `${Math.round(value * 0.34)}%`);
-  root.style.setProperty('--hdr-utility-rest', `${Math.round(value * 0.22)}%`);
-  root.style.setProperty('--hdr-utility-hover', `${Math.round(value * 0.62)}%`);
-  root.style.setProperty('--hdr-action-rest', `${Math.round(value * 0.4)}%`);
-  root.style.setProperty('--hdr-action-hover', formattedValue);
+  root.style.setProperty('--demo-rest-strength', `${Math.round(value * 0.4)}%`);
+  root.style.setProperty('--demo-utility-strength', `${Math.round(value * 0.55)}%`);
+  root.style.setProperty('--demo-action-strength', `${Math.round(value * 0.75)}%`);
+  root.style.setProperty('--demo-action-hover-strength', `${Math.min(50, Math.round(value * 1.35))}%`);
   strengthValue.value = formattedValue;
   comparisonValue.value = formattedValue;
 }
@@ -44,12 +41,12 @@ toggle.addEventListener('click', () => {
 strength.addEventListener('input', updateStrength);
 hdrQuery.addEventListener('change', updateStatus);
 
-tabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
-    tabs.forEach((item) => {
-      const isActive = item === tab;
-      item.classList.toggle('tabItemActive', isActive);
-      item.setAttribute('aria-selected', String(isActive));
+modeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    modeButtons.forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle('segmentItemActive', isActive);
+      item.setAttribute('aria-pressed', String(isActive));
     });
   });
 });
