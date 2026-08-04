@@ -28,7 +28,10 @@
       <section class="hero sectionGrid" aria-labelledby="heroTitle">
         <div class="sectionIndex">01 / The difference</div>
         <div class="heroCopy">
-          <h1 id="heroTitle">White.<br>Then brighter than white.</h1>
+          <h1 id="heroTitle">
+            <span class="hdrText" data-text="White.">White.</span>
+            <span class="hdrText" data-text="Then brighter than white.">Then brighter than white.</span>
+          </h1>
           <p>Both samples use the same <code>#fff</code> background. The second one adds an HDR layer and blends it with the surface.</p>
         </div>
 
@@ -47,7 +50,7 @@
           <article class="comparisonPanel">
             <div class="sampleMeta">
               <span>HDR layer</span>
-              <code>strength: <output id="comparisonValue">18%</output></code>
+              <code>strength: <output id="comparisonValue">20%</output></code>
             </div>
             <div class="whiteSample hdr-ui comparisonHdr">
               <span>HDR white</span>
@@ -58,8 +61,14 @@
 
         <div class="strengthControl">
           <label for="strength">HDR strength</label>
-          <input id="strength" type="range" min="0" max="50" value="18" step="1">
-          <output id="strengthValue" for="strength">18%</output>
+          <div class="strengthTrack">
+            <input id="strength" type="range" min="0" max="100" value="20" step="1" aria-describedby="strengthWarning">
+            <div class="strengthWarning" id="strengthWarning" role="status" hidden>
+              <span class="strengthWarningThreshold" aria-hidden="true">40+</span>
+              <p><strong>Use this range with care.</strong> Most UI needs less. High levels can produce harsh highlights or compositing artifacts, and may flicker when animated.</p>
+            </div>
+          </div>
+          <output id="strengthValue" for="strength">20%</output>
         </div>
       </section>
 
@@ -77,10 +86,12 @@
               <code>button</code>
             </div>
             <button class="hdr-ui animatedHdr colorButton">
-              Generate preview
-              <svg class="uiIcon" viewBox="0 0 20 20" aria-hidden="true">
-                <path d="m7 4 6 6-6 6"></path>
-              </svg>
+              <span>Generate preview</span>
+              <span class="colorButtonIcon" aria-hidden="true">
+                <svg class="uiIcon" viewBox="0 0 20 20">
+                  <path d="m7 4 6 6-6 6"></path>
+                </svg>
+              </span>
             </button>
           </article>
 
@@ -101,7 +112,7 @@
           </article>
 
           <article class="sampleBlock sampleBlockTexture">
-            <div class="sampleMeta sampleMetaLight">
+            <div class="sampleMeta">
               <span>Gradient</span>
               <code>one CSS gradient</code>
             </div>
@@ -188,8 +199,43 @@
         </div>
       </section>
 
+      <section class="imageSection sectionGrid" aria-labelledby="imageTitle">
+        <div class="sectionIndex">03 / Beyond UI</div>
+        <div class="sectionIntro">
+          <h2 id="imageTitle">Brightness with<br>a precise shape.</h2>
+          <p>A second HDR image acts as a lightmap: dark areas leave the scene untouched while the bright figure receives the highlight. This sits outside the package API, but shows the same browser capability.</p>
+        </div>
+
+        <div class="imageDemo">
+          <div class="imageComposite">
+            <div class="sampleMeta">
+              <span>Composite</span>
+              <code>base + HDR lightmap</code>
+            </div>
+            <div class="imageStage" aria-label="Landscape with an HDR highlight isolated to the figure">
+              <img src="./assets/person-glow/scene.webp" alt="A luminous figure standing in a flower field beneath mountains">
+              <img class="imageLightmap" src="./assets/person-glow/glow-mask-hdr.avif" alt="">
+            </div>
+          </div>
+
+          <aside class="imageMaskPanel">
+            <div class="sampleMeta">
+              <span>Lightmap</span>
+              <code>multiply</code>
+            </div>
+            <div class="imageMaskPreview" aria-hidden="true">
+              <img src="./assets/person-glow/glow-mask-hdr.avif" alt="">
+            </div>
+            <div class="imageExplanation">
+              <strong>Localized brightness</strong>
+              <p>Use the HDR toggle above to compare the composite with the untouched SDR image.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <section class="codeSection sectionGrid" aria-labelledby="codeTitle">
-        <div class="sectionIndex">03 / The implementation</div>
+        <div class="sectionIndex">04 / The implementation</div>
         <div class="sectionIntro">
           <h2 id="codeTitle">Your element.<br>Your states.</h2>
           <p>The package adds no hover or active logic. Change one variable wherever your component needs it.</p>
