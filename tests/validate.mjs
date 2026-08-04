@@ -12,6 +12,8 @@ assert.match(css, /--hdr-ui-strength/);
 assert.match(css, /opacity: var\(--hdr-ui-strength, 10%\)/);
 assert.match(css, /:where\(\.hdr-ui\)/);
 assert.doesNotMatch(css, /:hover|:active|:focus-visible|aria-current|aria-pressed|data-hdr-active/);
+assert.doesNotMatch(css, /transition|--hdr-ui-duration|prefers-reduced-motion/);
+assert.doesNotMatch(css, /background-repeat|background-size/);
 assert.doesNotMatch(css, /https?:\/\//);
 
 const avifMatch = css.match(/data:image\/avif;base64,([^"\)]+)/);

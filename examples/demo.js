@@ -4,8 +4,8 @@ const preview = document.querySelector('#preview');
 
 function updateStatus() {
   status.textContent = hdrQuery.matches
-    ? 'HDR display capability detected'
-    : 'SDR mode — HDR layers are disabled';
+    ? 'dynamic-range: high matched — HDR layer enabled'
+    : 'dynamic-range: high not matched — HDR layer disabled';
 }
 
 const strength = document.querySelector('#strength');
