@@ -78,7 +78,9 @@
             </div>
             <button class="hdr-ui animatedHdr colorButton">
               Generate preview
-              <span aria-hidden="true">↗</span>
+              <svg class="uiIcon" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="m7 4 6 6-6 6"></path>
+              </svg>
             </button>
           </article>
 
@@ -103,8 +105,8 @@
               <span>Gradient</span>
               <code>one CSS gradient</code>
             </div>
-            <div class="hdr-ui animatedHdr textureSurface" tabindex="0">
-              <span>Material 03</span>
+            <div class="hdr-ui animatedHdr textureSurface">
+              <span>Violet field</span>
               <strong>Color is the material.</strong>
             </div>
           </article>
@@ -120,7 +122,11 @@
                 <strong>Render complete</strong>
                 <span>32 frames · 4.8 seconds</span>
               </div>
-              <button class="hdr-ui animatedHdr statusAction" aria-label="Open rendered file">→</button>
+              <button class="hdr-ui animatedHdr statusAction" aria-label="Open rendered file">
+                <svg class="uiIcon" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="m7 4 6 6-6 6"></path>
+                </svg>
+              </button>
             </div>
           </article>
 
@@ -139,7 +145,9 @@
                   <input type="text" placeholder="Write something…">
                 </label>
                 <button class="hdr-ui animatedHdr composerSend" aria-label="Send message">
-                  <span aria-hidden="true">↑</span>
+                  <svg class="uiIcon" viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M10 15V5M6 9l4-4 4 4"></path>
+                  </svg>
                 </button>
               </form>
             </div>
@@ -151,17 +159,29 @@
               <code>the layer keeps the surface character</code>
             </div>
             <div class="materialGrid">
-              <div class="hdr-ui animatedHdr materialSample materialPaper" tabindex="0">
+              <div class="hdr-ui animatedHdr materialSample materialPaper">
                 <span>Paper</span>
                 <strong>01</strong>
               </div>
-              <div class="hdr-ui animatedHdr materialSample materialColor" tabindex="0">
+              <div class="hdr-ui animatedHdr materialSample materialColor">
                 <span>Warm</span>
                 <strong>02</strong>
               </div>
-              <div class="hdr-ui animatedHdr materialSample materialNeutral" tabindex="0">
+              <div class="hdr-ui animatedHdr materialSample materialNeutral">
                 <span>Neutral</span>
                 <strong>03</strong>
+              </div>
+              <div class="hdr-ui animatedHdr materialSample materialDawn">
+                <span>Dawn</span>
+                <strong>04</strong>
+              </div>
+              <div class="hdr-ui animatedHdr materialSample materialEarth">
+                <span>Earth</span>
+                <strong>05</strong>
+              </div>
+              <div class="hdr-ui animatedHdr materialSample materialMist">
+                <span>Mist</span>
+                <strong>06</strong>
               </div>
             </div>
           </article>
@@ -197,7 +217,7 @@
 
     <footer>
       <span>HDR UI for Web · CSS experiment</span>
-      <a href="https://github.com/bbssppllvv/HDR-UI-for-web">Source on GitHub ↗</a>
+      <a href="https://github.com/bbssppllvv/HDR-UI-for-web">Source on GitHub</a>
     </footer>
 
     <script src="./demo.js"></script>
