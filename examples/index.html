@@ -1,66 +1,201 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-hdr-enabled="true">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HDR UI for Web examples</title>
+    <meta name="description" content="A live comparison and playground for brighter-than-white HDR on web UI elements.">
+    <title>HDR UI for Web — Live experiment</title>
     <link rel="stylesheet" href="../index.css">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
+    <header class="siteHeader">
+      <a class="wordmark" href="./" aria-label="HDR UI for Web home">
+        <span class="wordmarkMark" aria-hidden="true"></span>
+        HDR UI
+      </a>
+
+      <div class="headerControls">
+        <span class="displayStatus" id="status">Checking dynamic range…</span>
+        <button class="hdrToggle" id="hdrToggle" aria-pressed="true">
+          <span class="toggleIndicator" aria-hidden="true"></span>
+          <span id="toggleLabel">HDR on</span>
+        </button>
+      </div>
+    </header>
+
     <main>
-      <header>
-        <p class="eyebrow">HDR UI for Web</p>
-        <h1>Brighter-than-white UI, with one class.</h1>
-        <p class="intro">The HDR layer is enabled only when <code>dynamic-range: high</code> matches.</p>
-        <div class="status" id="status">Checking display…</div>
-      </header>
-
-      <section>
-        <div class="sectionHeading">
-          <h2>UI surfaces</h2>
-          <p>Each component owns its strength and state logic.</p>
+      <section class="hero sectionGrid" aria-labelledby="heroTitle">
+        <div class="sectionIndex">01 / The difference</div>
+        <div class="heroCopy">
+          <h1 id="heroTitle">White.<br>Then brighter than white.</h1>
+          <p>Both samples use the same <code>#fff</code> background. The second one adds a one-pixel HDR layer and blends it with the surface.</p>
         </div>
 
-        <div class="examples">
-          <button class="hdr-ui button buttonPrimary">Continue</button>
-          <button class="hdr-ui button buttonColor">New research</button>
-          <div class="hdr-ui card">
-            <span class="cardLabel">Textured surface</span>
-            <strong>HDR preserves the underlying gradient.</strong>
+        <div class="comparison" aria-label="SDR and HDR white comparison">
+          <article class="comparisonPanel">
+            <div class="sampleMeta">
+              <span>Base</span>
+              <code>background: #fff</code>
+            </div>
+            <div class="whiteSample">
+              <span>SDR white</span>
+              <strong>#FFF</strong>
+            </div>
+          </article>
+
+          <article class="comparisonPanel">
+            <div class="sampleMeta">
+              <span>HDR layer</span>
+              <code>strength: <output id="comparisonValue">18%</output></code>
+            </div>
+            <div class="whiteSample hdr-ui comparisonHdr">
+              <span>HDR white</span>
+              <strong>#FFF+</strong>
+            </div>
+          </article>
+        </div>
+
+        <div class="strengthControl">
+          <label for="strength">HDR strength</label>
+          <input id="strength" type="range" min="0" max="50" value="18" step="1">
+          <output id="strengthValue" for="strength">18%</output>
+        </div>
+      </section>
+
+      <section class="examplesSection sectionGrid" aria-labelledby="examplesTitle">
+        <div class="sectionIndex">02 / The same layer</div>
+        <div class="sectionIntro">
+          <h2 id="examplesTitle">One primitive.<br>Different surfaces.</h2>
+          <p>The layer follows the element’s shape and multiplies into its existing color, texture, text, and icons. Hover or focus the interactive samples.</p>
+        </div>
+
+        <div class="sampleGrid">
+          <article class="sampleBlock sampleBlockAction">
+            <div class="sampleMeta">
+              <span>Action</span>
+              <code>button</code>
+            </div>
+            <button class="hdr-ui animatedHdr colorButton">
+              Generate preview
+              <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+
+          <article class="sampleBlock sampleBlockControls">
+            <div class="sampleMeta">
+              <span>Controls</span>
+              <code>nav + icon button</code>
+            </div>
+            <div class="controlRow">
+              <nav class="segment" aria-label="Example view selector">
+                <button class="hdr-ui animatedHdr segmentItem segmentItemActive" aria-pressed="true">Canvas</button>
+                <button class="hdr-ui animatedHdr segmentItem" aria-pressed="false">Code</button>
+              </nav>
+              <button class="hdr-ui animatedHdr iconButton" aria-label="Increase exposure">
+                <span aria-hidden="true">＋</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="sampleBlock sampleBlockTexture">
+            <div class="sampleMeta sampleMetaLight">
+              <span>Texture</span>
+              <code>gradient + noise</code>
+            </div>
+            <div class="hdr-ui animatedHdr textureSurface" tabindex="0">
+              <span>Material 03</span>
+              <strong>Light mixes with what is already there.</strong>
+            </div>
+          </article>
+
+          <article class="sampleBlock sampleBlockSystem">
+            <div class="sampleMeta">
+              <span>System UI</span>
+              <code>status surface</code>
+            </div>
+            <div class="hdr-ui animatedHdr statusSurface" tabindex="0">
+              <span class="statusDot" aria-hidden="true"></span>
+              <div>
+                <strong>Render complete</strong>
+                <span>32 frames · 4.8 seconds</span>
+              </div>
+              <span class="statusArrow" aria-hidden="true">→</span>
+            </div>
+          </article>
+
+          <article class="sampleBlock sampleBlockComposer">
+            <div class="sampleMeta">
+              <span>Composer</span>
+              <code>input surface + nested controls</code>
+            </div>
+            <div class="composerStage">
+              <div class="hdr-ui animatedHdr composer">
+                <button class="composerUtility" aria-label="Add attachment">
+                  <span aria-hidden="true">＋</span>
+                </button>
+                <span class="composerPlaceholder">Write something…</span>
+                <button class="composerSend" aria-label="Send message">
+                  <span aria-hidden="true">↑</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="sampleBlock sampleBlockMaterials">
+            <div class="sampleMeta">
+              <span>Materials</span>
+              <code>the layer keeps the surface character</code>
+            </div>
+            <div class="materialGrid">
+              <div class="hdr-ui animatedHdr materialSample materialPaper" tabindex="0">
+                <span>Paper</span>
+                <strong>01</strong>
+              </div>
+              <div class="hdr-ui animatedHdr materialSample materialColor" tabindex="0">
+                <span>Color</span>
+                <strong>02</strong>
+              </div>
+              <div class="hdr-ui animatedHdr materialSample materialMetal" tabindex="0">
+                <span>Metal</span>
+                <strong>03</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="codeSection sectionGrid" aria-labelledby="codeTitle">
+        <div class="sectionIndex">03 / The implementation</div>
+        <div class="sectionIntro">
+          <h2 id="codeTitle">Your element.<br>Your states.</h2>
+          <p>The package adds no hover or active logic. Change one variable wherever your component needs it.</p>
+        </div>
+
+        <div class="codeExample" aria-label="CSS usage example">
+          <div class="codeHeader">
+            <span>CSS</span>
+            <span>Zero dependencies</span>
           </div>
-        </div>
-      </section>
+          <pre><code><span class="codeMuted">&lt;button class=</span><span class="codeString">"hdr-ui action"</span><span class="codeMuted">&gt;</span>
+  Continue
+<span class="codeMuted">&lt;/button&gt;</span>
 
-      <section>
-        <div class="sectionHeading">
-          <h2>State is yours</h2>
-          <p>This demo changes the same variable on hover and selection.</p>
-        </div>
+<span class="codeSelector">.action</span> {
+  <span class="codeProperty">--hdr-ui-strength</span>: <span class="codeValue">6%</span>;
+}
 
-        <nav class="tabs" aria-label="Example navigation">
-          <a class="hdr-ui tab" href="#screens">Screens</a>
-          <a class="hdr-ui tab" aria-current="page" href="#flows">Flows</a>
-          <a class="hdr-ui tab" href="#apps">Apps</a>
-        </nav>
-      </section>
-
-      <section>
-        <div class="sectionHeading">
-          <h2>Tune intensity</h2>
-          <p>The control changes <code>--hdr-ui-strength</code> directly.</p>
-        </div>
-
-        <div class="playground">
-          <div class="hdr-ui preview" id="preview">Preview surface</div>
-          <label class="strengthControl">
-            Strength
-            <input id="strength" type="range" min="0" max="50" value="10" step="1">
-            <output for="strength">10%</output>
-          </label>
+<span class="codeSelector">.action:hover</span> {
+  <span class="codeProperty">--hdr-ui-strength</span>: <span class="codeValue">18%</span>;
+}</code></pre>
         </div>
       </section>
     </main>
+
+    <footer>
+      <span>HDR UI for Web · CSS experiment</span>
+      <a href="https://github.com/bbssppllvv/HDR-UI-for-web">Source on GitHub ↗</a>
+    </footer>
 
     <script src="./demo.js"></script>
   </body>
