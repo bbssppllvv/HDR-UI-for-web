@@ -4,6 +4,10 @@ A tiny, dependency-free CSS primitive for brighter-than-white HDR highlights on 
 
 HDR UI for Web uses one inline 1×1 PQ AVIF, `mix-blend-mode: multiply`, and CSS opacity. The HDR layer is created only when the browser matches `@media (dynamic-range: high)`. On SDR output, no HDR layer is created.
 
+## [Open the live HDR demo →](https://bbssppllvv.github.io/HDR-UI-for-web/)
+
+Open it on an HDR-capable display. Screenshots and GIFs do not preserve the physical HDR brightness.
+
 ## Install from GitHub
 
 Until the package is published to npm, install it directly from this repository:
