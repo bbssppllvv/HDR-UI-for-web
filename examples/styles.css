@@ -33,7 +33,8 @@ body {
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
 }
 
@@ -597,21 +598,27 @@ input[type="range"]::-moz-range-thumb {
   min-height: 371px;
   place-items: center;
   padding: clamp(24px, 6vw, 72px);
-  background: #e9e9e5;
+  background: #fff;
 }
 
 .composer {
-  --hdr-ui-strength: var(--demo-rest-strength);
+  --hdr-ui-strength: var(--demo-utility-strength);
   display: grid;
   width: min(860px, 100%);
-  min-height: 88px;
+  min-height: 64px;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 14px;
-  padding: 10px 12px;
-  border: 1px solid #c7c8c2;
-  border-radius: 30px;
-  background: #fff;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #cfd0ca;
+  border-radius: 31px;
+  background: rgb(255 255 255 / .88);
+  backdrop-filter: blur(16px);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.composer:focus-within {
+  border-color: #9b9c96;
 }
 
 .composerUtility,
@@ -619,31 +626,31 @@ input[type="range"]::-moz-range-thumb {
   position: relative;
   --hdr-ui-strength: var(--demo-utility-strength);
   display: grid;
-  width: 58px;
-  height: 58px;
+  width: 36px;
+  height: 36px;
   place-items: center;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .composerUtility {
-  border: 1px solid #d4d5ce;
-  background: #ecece8;
+  border: 1px solid #d8d9d3;
+  background: #fff;
   color: var(--ink);
-  font-size: 22px;
+  box-shadow: 0 1px 3px rgb(12 41 126 / .09), 0 0 1px rgb(12 41 126 / .04);
+  font-size: 18px;
 }
 
 .composerSend {
-  --hdr-ui-strength: var(--demo-action-strength);
+  --hdr-ui-strength: var(--demo-utility-strength);
   border: 1px solid #d4d5ce;
-  background: #f4f4f0;
+  background: #ecece8;
   color: var(--ink);
-  font-size: 22px;
 }
 
 .composerUtility:hover,
 .composerUtility:focus-visible {
-  --hdr-ui-strength: var(--demo-strength);
+  --hdr-ui-strength: var(--demo-action-hover-strength);
 }
 
 .composerSend:hover,
@@ -652,28 +659,30 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .composerInput,
-.composerInput input {
+.composerInput textarea {
   width: 100%;
   min-width: 0;
 }
 
 .composerInput {
-  padding: 0 10px;
-  border-right: 1px solid #dedfd9;
-  border-left: 1px solid #dedfd9;
+  display: grid;
 }
 
-.composerInput input {
-  min-height: 58px;
-  padding: 0 4px;
+.composerInput textarea {
+  min-height: 36px;
+  max-height: 144px;
+  padding: 9px 4px;
+  resize: none;
   border: 0;
   outline: 0;
   background: transparent;
   color: var(--ink);
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: 14px;
+  line-height: 1.2;
+  scrollbar-width: none;
 }
 
-.composerInput input::placeholder {
+.composerInput textarea::placeholder {
   color: #74766f;
 }
 
@@ -905,15 +914,9 @@ footer a {
   }
 
   .composer {
-    min-height: 72px;
-    padding: 8px;
-    border-radius: 24px;
-  }
-
-  .composerUtility,
-  .composerSend {
-    width: 48px;
-    height: 48px;
+    min-height: 64px;
+    padding: 12px;
+    border-radius: 31px;
   }
 
   .materialGrid {
