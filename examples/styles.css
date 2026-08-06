@@ -11,7 +11,7 @@
   --surface-hover: #dedfd9;
   --frame-radius: 14px;
   --hdr-text-base: #a0a19c;
-  --hdr-demo-pixel: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAD4bWV0YQAAAAAAAAAhaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAAAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAEgAAAAFQAAAChpaW5mAAAAAAABAAAAGmluZmUCAAAAAAEAAGF2MDFDb2xvcgAAAAB3aXBycAAAAFdpcGNvAAAAFGlzcGUAAAAAAAAAAgAAAAIAAAAQcGl4aQAAAAADCgoKAAAADGF2MUOBAEwAAAAAE2NvbHJuY2x4AAkAEAAJAAAAAAxjbGxpA+gBkAAAABhpcG1hAAAAAAAAAAEAAQUBAoMEBQAAAB1tZGF0EgAKBRgANiAgMgoQAAAAB8dRt6+A");
+  --hdr-demo-pixel: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAD4bWV0YQAAAAAAAAAhaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAAAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAEgAAAAFQAAAChpaW5mAAAAAAABAAAAGmluZmUCAAAAAAEAAGF2MDFDb2xvcgAAAAB3aXBycAAAAFdpcGNvAAAAFGlzcGUAAAAAAAAAAgAAAAIAAAAQcGl4aQAAAAADCgoKAAAADGF2MUOBAEwAAAAAE2NvbHJuY2x4AAkAEAAJAAAAAAxjbGxpAZABkAAAABhpcG1hAAAAAAAAAAEAAQUBAoMEBQAAAB1tZGF0EgAKBRgANiAgMgoQAABOHKBIoZzA");
   --demo-strength: 20%;
   --demo-rest-strength: 8%;
   --demo-utility-strength: 11%;
@@ -237,7 +237,6 @@ h1 {
 
 @media (dynamic-range: high) {
   .hdrText::after {
-    dynamic-range-limit: no-limit;
     opacity: 100%;
   }
 }
@@ -903,7 +902,6 @@ input[type="range"]::-moz-range-thumb {
 
 @media (dynamic-range: high) {
   .imageLightmap {
-    dynamic-range-limit: no-limit;
     opacity: var(--demo-strength);
   }
 
