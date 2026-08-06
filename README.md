@@ -56,14 +56,23 @@ This is only an example. State logic and animation remain entirely in your compo
 
 ## How it works
 
-The class adds an inline 1×1 PQ AVIF through `::after` and blends it with the element's background, texture, text, and icons using `multiply`. `--hdr-ui-strength` is an artistic control, not a measurement of extra nits.
+The class adds a tiny inline PQ AVIF with explicit HDR luminance metadata through `::after`, stretches one copy across the element, and blends it with the element's background, texture, text, and icons using `multiply`. It keeps that layer isolated and compositor-ready to avoid the Safari compositor demotion observed after opacity changes. `--hdr-ui-strength` is an artistic control, not a measurement of extra nits.
 
 It is CSS-only: no JavaScript runtime, package build step, CDN, or network request.
+
+## Browser behavior
+
+- Chromium browsers render the effect on supported HDR output.
+- Safari 26 and newer render the effect using the AVIF's explicit HDR luminance metadata.
+- SDR output and browsers without an active HDR image pipeline receive the browser's SDR rendering.
+
+`dynamic-range: high` detects HDR capability; it does not expose display peak brightness or guarantee that HDR headroom is currently available. The same strength can therefore look different across displays and viewing conditions.
 
 ## Limitations
 
 - The effect covers the whole rendered box and works best when the element paints its own background.
 - It uses `::after` and sets a low-specificity `position: relative` only when `dynamic-range: high` matches. For `<img>`, `<input>`, or an element that already uses `::after`, apply `.hdr-ui` to a wrapper.
+- `.hdr-ui` creates an isolated stacking context and keeps its HDR overlay compositor-ready. Avoid applying it indiscriminately to large lists or grids.
 - Ancestor compositing can change the result. Test the final component on real HDR hardware.
 - `dynamic-range: high` is a capability gate, not a monitor model or peak-nits measurement. Screenshots and GIFs do not preserve physical HDR brightness.
 
