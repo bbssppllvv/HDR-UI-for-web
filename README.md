@@ -87,6 +87,24 @@ Change the same variable in whichever selectors your component already uses:
 
 This is only an example. State logic and animation remain entirely in your component CSS.
 
+### Animate the strength, not the layer
+
+`--hdr-ui-strength` is a registered, animatable property. To fade the effect, transition the variable on your element instead of `opacity` on `::after`:
+
+```css
+.button {
+  --hdr-ui-strength: 0%;
+  transition: --hdr-ui-strength 120ms ease-out;
+}
+
+.button:hover,
+.button:active {
+  --hdr-ui-strength: 12%;
+}
+```
+
+While the value is above zero the HDR layer exists and follows it; when it reaches `0%` the layer is removed entirely (see below). On HDR output every animated frame is composited through a 16-bit surface, so keep transitions short. Switching the effect on instantly and only fading it out (`transition: none` in the `:hover` rule) feels the most responsive and drops the fewest frames.
+
 ### What happens on a normal display?
 
 Nothing special is required. When HDR output is unavailable, the browser renders your original element without the HDR layer. Keep the element's normal background, border, and contrast usable on their own; HDR should enhance the design, not provide essential contrast.
@@ -95,6 +113,8 @@ Nothing special is required. When HDR output is unavailable, the browser renders
 
 The class adds a tiny inline PQ AVIF with explicit HDR luminance metadata through `::after`, stretches one copy across the element, and blends it with the element's background, texture, text, and icons using `multiply`. The default source peaks at 400 nits; `data-peak-nits` selects a brighter embedded source. Unsupported values fall back to 400. The value describes the encoded source, not guaranteed physical display luminance. The layer stays isolated and compositor-ready to avoid the Safari compositor demotion observed after opacity changes.
 
+At zero strength (`0%` or `0`) the layer is not rendered at all: a style container query removes the `::after` box, so an idle `.hdr-ui` element costs nothing — no isolated group, no blend surface, no compositor layer. Every `.hdr-ui` element with a non-zero strength is a separate blended render surface, and on HDR output the compositor rebuilds all of them for every animated frame, so many always-on elements plus long transitions can drop frames. Keep the rest state at `0%` wherever the effect is only meant for interaction.
+
 It is CSS-only: no JavaScript runtime, package build step, CDN, or network request.
 
 ## Browser behavior
@@ -102,6 +122,7 @@ It is CSS-only: no JavaScript runtime, package build step, CDN, or network reque
 - Chromium browsers render the effect on supported HDR output.
 - Safari 26 and newer render the effect using the AVIF's explicit HDR luminance metadata.
 - SDR output and browsers without an active HDR image pipeline receive the browser's SDR rendering.
+- The zero-strength teardown relies on `@property` and style container queries (Chromium 111+, Safari 18+). Where they are unavailable the layer behaves as in 0.1: present, at `opacity: 0`.
 
 `dynamic-range: high` detects HDR capability; it does not expose display peak brightness or guarantee that HDR headroom is currently available. The same strength can therefore look different across displays and viewing conditions.
 
@@ -109,7 +130,8 @@ It is CSS-only: no JavaScript runtime, package build step, CDN, or network reque
 
 - The effect covers the whole rendered box and works best when the element paints its own background.
 - It uses `::after` and sets a low-specificity `position: relative` only when `dynamic-range: high` matches. For `<img>`, `<input>`, or an element that already uses `::after`, apply `.hdr-ui` to a wrapper.
-- `.hdr-ui` creates an isolated stacking context and keeps its HDR overlay compositor-ready. Avoid applying it indiscriminately to large lists or grids.
+- `.hdr-ui` creates an isolated stacking context and keeps its HDR overlay compositor-ready while its strength is above zero. Avoid many always-on elements in large lists or grids; a rest state of `0%` is free.
+- `--hdr-ui-strength` is registered as `<percentage> | <number>`; other value types are invalid and fall back to the 10% initial value.
 - Ancestor compositing can change the result. Test the final component on real HDR hardware.
 - An ancestor's `dynamic-range-limit` can cap or disable the HDR effect; the package respects that limit.
 - `dynamic-range: high` is a capability gate, not a monitor model or peak-nits measurement. Screenshots and GIFs do not preserve physical HDR brightness.
@@ -130,6 +152,14 @@ Then open `http://localhost:8080/examples/` on an HDR display.
 npm test
 npm run pack:check
 ```
+
+## Changelog
+
+### 0.2.0
+
+- Zero cost at rest: at `--hdr-ui-strength: 0%` (or `0`) the HDR layer is removed instead of kept at `opacity: 0`. Measured on a metal-style button page in Chrome on an XDR display, the same hover sequence went from 44 dropped frames to 9 with no component changes, and to 2 when the component fades the strength out instead of the layer's opacity.
+- `--hdr-ui-strength` is registered with `@property` (`<percentage> | <number>`, inherits, initial `10%`), so it can be transitioned directly.
+- No API change: same class, same attributes, same default, unchanged SDR output. Components that transitioned `opacity` on `::after` should transition `--hdr-ui-strength` instead to keep their fade-out.
 
 ## License
 

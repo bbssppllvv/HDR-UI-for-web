@@ -479,7 +479,7 @@ input[type="range"]::-moz-range-thumb {
   font-weight: 500;
   letter-spacing: -.02em;
   cursor: pointer;
-  transition: background-position 220ms var(--ease-out);
+  transition: background-position 220ms var(--ease-out), --hdr-ui-strength var(--duration-fast) var(--ease-out);
 }
 
 .colorButtonIcon {
@@ -492,8 +492,9 @@ input[type="range"]::-moz-range-thumb {
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
-.animatedHdr::after {
-  transition: opacity var(--duration-fast) var(--ease-out);
+.animatedHdr {
+  /* Animate the strength itself: hdr-ui removes the layer once it reaches 0%. */
+  transition: --hdr-ui-strength var(--duration-fast) var(--ease-out);
 }
 
 .colorButton:hover,
@@ -559,7 +560,7 @@ input[type="range"]::-moz-range-thumb {
   min-height: 48px;
   padding: 0 24px;
   border-radius: 999px;
-  transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out), --hdr-ui-strength var(--duration-fast) var(--ease-out);
 }
 
 .segmentItemActive {
@@ -588,7 +589,7 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   background: var(--surface-raised);
   font-size: 23px;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out), --hdr-ui-strength var(--duration-fast) var(--ease-out);
 }
 
 .iconButton:hover,
@@ -682,7 +683,7 @@ input[type="range"]::-moz-range-thumb {
   color: var(--ink);
   font-size: 20px;
   cursor: pointer;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out), --hdr-ui-strength var(--duration-fast) var(--ease-out);
 }
 
 .statusAction:hover,
@@ -722,7 +723,7 @@ input[type="range"]::-moz-range-thumb {
   background: var(--surface-soft);
   box-shadow: inset 0 0 0 1px #fff;
   backdrop-filter: blur(16px);
-  transition: background-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out), --hdr-ui-strength var(--duration-fast) var(--ease-out);
 }
 
 .composer:focus-within {
@@ -739,7 +740,7 @@ input[type="range"]::-moz-range-thumb {
   place-items: center;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  transition: background-color var(--duration-fast) var(--ease-out), --hdr-ui-strength var(--duration-fast) var(--ease-out);
 }
 
 .composerUtility {
@@ -1147,7 +1148,7 @@ footer a {
     scroll-behavior: auto;
   }
 
-  .animatedHdr::after,
+  .animatedHdr,
   .hdrToggle {
     transition: none;
   }
