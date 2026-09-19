@@ -1,3 +1,11 @@
+/* Typed, animatable strength. `<number>` is accepted so a bare `0` keeps working exactly as
+   before; `inherits: true` keeps the behaviour of an ordinary custom property. */
+@property --hdr-ui-strength {
+  syntax: "<percentage> | <number>";
+  inherits: true;
+  initial-value: 10%;
+}
+
 @media (dynamic-range: high) {
   :where(.hdr-ui) {
     position: relative;
@@ -25,5 +33,20 @@
 
   :where(.hdr-ui[data-peak-nits="1000"])::after {
     background-image: url("data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAD4bWV0YQAAAAAAAAAhaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAAAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAEgAAAAFQAAAChpaW5mAAAAAAABAAAAGmluZmUCAAAAAAEAAGF2MDFDb2xvcgAAAAB3aXBycAAAAFdpcGNvAAAAFGlzcGUAAAAAAAAAAgAAAAIAAAAQcGl4aQAAAAADCgoKAAAADGF2MUOBAEwAAAAAE2NvbHJuY2x4AAkAEAAJAAAAAAxjbGxpA+gD6AAAABhpcG1hAAAAAAAAAAEAAQUBAoMEBQAAAB1tZGF0EgAKBRgANiAgMgoQAABOHKBIkw4w");
+  }
+
+  /* At zero strength the HDR layer does not exist: no isolated group, no blend surface and no
+     compositor layer idling on every .hdr-ui element on the page. To fade out, animate
+     --hdr-ui-strength itself; the layer stays until the value actually reaches zero. */
+  @container style(--hdr-ui-strength: 0%) {
+    :where(.hdr-ui)::after {
+      display: none;
+    }
+  }
+
+  @container style(--hdr-ui-strength: 0) {
+    :where(.hdr-ui)::after {
+      display: none;
+    }
   }
 }

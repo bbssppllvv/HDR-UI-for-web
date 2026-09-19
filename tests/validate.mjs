@@ -16,6 +16,9 @@ assert.match(css, /data-peak-nits="600"/);
 assert.match(css, /data-peak-nits="1000"/);
 assert.match(css, /isolation:\s*isolate/);
 assert.match(css, /will-change:\s*opacity/);
+assert.match(css, /@property --hdr-ui-strength \{[^}]*syntax: "<percentage> \| <number>"[^}]*inherits: true[^}]*initial-value: 10%/s);
+assert.match(css, /@container style\(--hdr-ui-strength: 0%\)\s*\{\s*:where\(\.hdr-ui\)::after\s*\{\s*display: none;/);
+assert.match(css, /@container style\(--hdr-ui-strength: 0\)\s*\{\s*:where\(\.hdr-ui\)::after\s*\{\s*display: none;/);
 assert.doesNotMatch(css, /:hover|:active|:focus-visible|aria-current|aria-pressed|data-hdr-active/);
 assert.doesNotMatch(css, /transition|--hdr-ui-duration|prefers-reduced-motion/);
 assert.match(css, /background-repeat:\s*no-repeat/);
@@ -57,7 +60,7 @@ assert.equal(packageJson.exports['.'], './index.css');
 assert.equal(packageJson.exports['./styles.css'], './index.css');
 assert.equal(packageJson.exports['./index.css'], './index.css');
 assert.equal(packageJson.style, './index.css');
-assert.equal(packageJson.version, '0.1.2');
+assert.equal(packageJson.version, '0.2.0');
 assert.ok(packageJson.sideEffects.includes('**/*.css'));
 assert.ok(packageJson.files.includes('index.css'));
 
